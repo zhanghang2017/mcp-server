@@ -1,19 +1,47 @@
 {
-  "name": "mysql-mcp-server",
+  "name": "@mikechan2224/mysql-mcp-server",
   "version": "1.0.0",
-  "description": "mysql-mcp-server",
+  "description": "MCP server for MySQL.",
   "type": "module",
   "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "mcp",
+    "mysql",
+    "modelcontextprotocol",
+    "server",
+    "database"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhanghang2017/mcp-server.git",
+    "directory": "mysql-mcp-server"
+  },
+  "bugs": {
+    "url": "https://github.com/zhanghang2017/mcp-server/issues"
+  },
+  "homepage": "https://github.com/zhanghang2017/mcp-server/tree/main/mysql-mcp-server#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "mikechan2224@gmail.com",
+  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
     "dotenv": "^17.4.2",
     "mysql2": "^3.22.3",
+    "node-sql-parser": "^5.4.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {

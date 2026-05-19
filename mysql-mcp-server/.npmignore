@@ -1,0 +1,22 @@
+# Build and source
+src/
+*.ts
+*.tsx
+
+tsconfig.json
+
+# Dependencies
+node_modules/
+
+# Environment and logs
+.env
+.env.*
+*.log
+
+# Tooling
+.vscode/
+.git/
+.gitignore
+
+# Misc
+coverage/
