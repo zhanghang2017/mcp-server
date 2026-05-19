@@ -47,7 +47,7 @@ Environment variables:
 Notes:
 
 - When using `npx`, you do not need to build locally.
-- For production, set `MYSQL_ALLOW_WRITE_SQL=true` only when write operations are required.
+- For production, set `MYSQL_ALLOW_WRITE_SQL="true"` only when write operations are required.
 
 ## License
 
