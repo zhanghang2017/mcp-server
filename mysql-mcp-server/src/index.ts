@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import nsp from "node-sql-parser";
 const { Parser } = nsp;
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
