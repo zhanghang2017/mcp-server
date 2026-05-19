@@ -50,7 +50,7 @@ const pool = mysql.createPool({
 
 const server = new McpServer({
   name: "mysql-mcp-server",
-  version: "1.0.3",
+  version: "1.0.4",
 });
 
 /**
@@ -71,7 +71,19 @@ function getStatementType(statement: any): string {
  * Check whether a statement mutates data.
  */
 function isWriteStatement(statement: any): boolean {
-  return ["UPDATE", "INSERT", "DELETE"].includes(getStatementType(statement));
+  const writeStatementTypes = new Set([
+    "UPDATE",
+    "INSERT",
+    "DELETE",
+    "CREATE",
+    "ALTER",
+    "DROP",
+    "TRUNCATE",
+    "RENAME",
+    "GRANT",
+    "REVOKE",
+  ]);
+  return writeStatementTypes.has(getStatementType(statement));
 }
 
 /**
@@ -169,7 +181,7 @@ server.registerTool(
   "execute_query_sql",
   {
     description:
-      "Execute a SQL. UPDATE, INSERT, and DELETE require MYSQL_ALLOW_WRITE_SQL=true. SELECT is limited by MYSQL_SELECT_LIMIT.",
+      "Execute a SQL. UPDATE, INSERT, DELETE, CREATE, ALTER, DROP, TRUNCATE, RENAME, GRANT, and REVOKE require MYSQL_ALLOW_WRITE_SQL=true. SELECT is limited by MYSQL_SELECT_LIMIT.",
     inputSchema: { sql: z.string().describe("The SQL to execute") },
   },
   /**
@@ -185,7 +197,7 @@ server.registerTool(
           content: [
             {
               type: "text",
-              text: "Write SQL is disabled. Set MYSQL_ALLOW_WRITE_SQL=true to allow UPDATE, INSERT, and DELETE statements.",
+                text: "Write SQL is disabled. Set MYSQL_ALLOW_WRITE_SQL=true to allow UPDATE, INSERT, DELETE, CREATE, ALTER, DROP, TRUNCATE, RENAME, GRANT, and REVOKE statements.",
             },
           ],
           isError: true,
